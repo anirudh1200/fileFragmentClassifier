@@ -5,22 +5,21 @@ const fs = require('fs');
 const fileTypes = [
     'pdf',
     'html',
+    'bmp',
     'jpg',
+    'rtf',
     'png',
     'doc',
     'txt',
     'xls',
-    'ppt',
     'gif',
     'xml',
     'ps',
-    'csv',
-    'gz',
-    'log'
+    'csv'
 ];
 
 // joining path of directory
-const mainDirectoryPath = path.join(__dirname, 'files', 'training');
+const mainDirectoryPath = path.join(__dirname, 'files', `training${process.argv[2]}`);
 
 // Asynchronious implementation of forEach loop
 async function asyncForEach(array, callback) {
@@ -68,12 +67,13 @@ const mainFunc = async () => {
                 histogram[i] = 0;
             byteData.forEach(b => { histogram[b] += 1 });
             const finalHistogram = histogram.map(b => (b / dataLength));
-            let entropy = 0;
-            finalHistogram.forEach(value => {
-                if (value != 0)
-                    entropy += -value * Math.log2(value);
-            });
-            fs.appendFileSync('train.csv', `${finalHistogram.join(',')},${entropy},${fileTypes.indexOf(fileType)}\n`);
+            // let entropy = 0;
+            // finalHistogram.forEach(value => {
+            //     if (value != 0)
+            //         entropy += -value * Math.log2(value);
+            // });
+            // fs.appendFileSync(`train${process.argv[3]}.csv`, `${finalHistogram.join(',')},${entropy},${fileType}\n`);
+            fs.appendFileSync(`csvs/train${process.argv[3]}.csv`, `${finalHistogram.join(',')},${fileType}\n`);
         });
     });
 }
