@@ -7,27 +7,27 @@ import matplotlib.pyplot as plt
 fileTypes = [ 'pdf', 'html', 'jpg', 'png', 'doc', 'txt', 'xls', 'gif', 'xml', 'ps', 'csv']
 
 def test(training_file, testing_file):
-    X,y = trainBi.process_training_examples(training_file)
+    # X,y = trainBi.process_training_examples(training_file)
     X_test, y_test = trainBi.process_training_examples(testing_file)
 
-    acc_list = []
+    # acc_list = []
 
-    lin_svm = trainBi.train_linear_svm(X, y)
-    linear_svm_accuracy = test_with(lin_svm, X_test, y_test)
-    print("LinearSVM accuracy = {}%".format(100 * linear_svm_accuracy))
-    acc_list.append(linear_svm_accuracy)
+    # lin_svm = trainBi.train_linear_svm(X, y)
+    # linear_svm_accuracy = test_with(lin_svm, X_test, y_test)
+    # print("LinearSVM accuracy = {}%".format(100 * linear_svm_accuracy))
+    # acc_list.append(linear_svm_accuracy)
 
-    rbf_svm = trainBi.train_rbf_svm(X, y)
-    rbf_svm_accuracy = test_with(rbf_svm, X_test, y_test)
-    print("RBF-SVM accuracy = {}%".format(100 * rbf_svm_accuracy))
-    acc_list.append(rbf_svm_accuracy)
+    # rbf_svm = trainBi.train_rbf_svm(X, y)
+    # rbf_svm_accuracy = test_with(rbf_svm, X_test, y_test)
+    # print("RBF-SVM accuracy = {}%".format(100 * rbf_svm_accuracy))
+    # acc_list.append(rbf_svm_accuracy)
 
-    mlp_accuracy = trainBi.mlp(X, y, X_test, y_test, "BiModel"+sys.argv[1]+".hdf5")
-    acc_list.append(mlp_accuracy)
+    mlp_accuracy = trainBi.mlp(1,2, X_test, y_test, "BiModel"+sys.argv[1]+".hdf5")
+    # acc_list.append(mlp_accuracy)
 
-    ff = open("./results/Bi"+sys.argv[1]+".csv", 'a')
-    line = ','.join([ str(x) for x in acc_list ])
-    ff.write(line + "\r\n")
+    # ff = open("./results/Bi"+sys.argv[1]+".csv", 'a')
+    # line = ','.join([ str(x) for x in acc_list ])
+    # ff.write(line + "\r\n")
 
     #Print SVM confusion matrix
     # y_pred = rbf_svm.predict(X_test)
